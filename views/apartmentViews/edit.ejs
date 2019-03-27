@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Edit Data</title>
+</head>
+
+<body>
+  <center>
+    <h1>Edit Data</h1>
+    <a href="/">show all data</a><br>
+
+    <form method="POST">
+      Name <br>
+      <input type="text" value="<%= apartment.name  %>" name="name"> <br>
+      Location <br>
+      <input type="text" value="<%= apartment.location %>" name="location"> <br>
+      Phone <br>
+      <input type="text" value="<%= apartment.phone %>" name="phone"> <br>
+      Price <br>
+      <input type="text" value="<%= apartment.price %>" name="price"> <br>
+      <input type="submit" value="Edit ">
+    </form>
+  </center>
+</body>
+
+</html>

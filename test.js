@@ -1,0 +1,13 @@
+const Sentiment = require('sentiment');
+const sentiment = new Sentiment();
+// const result = sentiment.analyze(`Difficult too know where to start. Even more difficult to find fault. I chose Aria because of the trip advisor reviews and am so glad that I did. We arrived to find that we had been upgraded to a suite in the Opera wing. Rooms newly decorated and finished to a superlative standard. Massive bed, fine linens, interesting furniture. The hotel's 4-6 'cheese and wine' offer at first sounds a little tacky, but far from it. We went along each day to listen to some really good musicians. Relaxing to this music in the beautiful surroundings of the lobby bar, consuming a seemingly endless supply of Hungarian wine and cheese is a real experience. The hotel staff were all charming and simply could not do enough. They sorted restaurants, a walking tour, airport runs and were always on hand. We spent several happy hours in the roof top bar where the staff were equally as charming. Spectacular views across to St Stephen's basilica. The hotel spa is also to be recommended. Nice jacuzzi, pool and a selection of saunas and steam rooms. All done very tastefully and the place has a very calm feel. Again the staff were very attentive. We had the best of times in Budapest. It's a great city with a great feel but I'm sure that a significant part of why we enjoyed our three days so much was this hotel. I challenge you to find a hotel in a better location, with better rooms, facilities and of course, cheese and wine at 4 pm!`);
+// const result = sentiment.analyze(`It was a terrible stay. We paid for a standard room that should had had an AC but ended up with just begging for fan. Yes BEG, why? The AC was not working in a windowless room we kept asking them to fix it, and we literally had to wait until 1am to be given a standfan to use in a room that was filled with the stench of cigarette. If you are not desperate a room. Please don't stay here. Their rooms are not actually cheap, they have the same price of the surrounding hotels which unfortunately were all fully booked during our visit.`)
+
+const p1 = sentiment.analyze('this place is awesome, i want to stay longer in this place')
+const p2 = sentiment.analyze('this place is average, if you dont have enough time. this place suit for you')
+const p3 = sentiment.analyze('this place is terrible, i dont wanna stay anymore in this place')
+
+
+console.log(p1)
+console.log(p2)
+console.log(p3)
