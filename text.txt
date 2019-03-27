@@ -1,0 +1,25 @@
+initial everything
+  npm init -y
+  touch .gitignore -> node_modules
+  npm install sequelize pg express ejs
+  sequelize init
+  edit config -> postgres
+  sequelize db:create
+
+create table/model
+  sequelize model:generate --name NamaTableGakPakeS --attributes namaAtribut1:string,namaAtribut2:integer
+
+run migration
+  sequelize db:migrate
+
+new migration
+  sequelize migration:create --name nama-migration
+
+create new seed
+  sequelize seed:generate --name nama-seed
+
+run seed
+  sequelize db:seed namaSeed
+  sequelize db:seed:all
+*/
+
