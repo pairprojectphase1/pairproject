@@ -20,8 +20,10 @@
   },
   "homepage": "https://github.com/pairprojectphase1/pairproject#readme",
   "dependencies": {
+    "bcrypt": "^3.0.5",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "pg": "^7.9.0",
     "sentiment": "^5.0.1",
     "sequelize": "^5.2.0"
