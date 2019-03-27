@@ -1,34 +1,18 @@
 const router = require('express').Router()
 const { User } = require('../models')
 const { compare } = require('../helpers/bcrypt')
-const session = require('express-session')
-
-
-router.get('/', (req, res) => {
-  // console.log(req.session.login, ' ==================== ini apa sih')
-  res.render('user/homepage')
-})
 
 router.get('/registrasi', (req, res) => {
-  User
-    .findAll()
-    .then(user => {
-      res.render('user/registrasi', { data: user })
-    })
+  res.render('user/registrasi')
 })
-router.post('/registrasi', (req, res) => {
-  let { body } = req
+.post('/registrasi', (req, res) => {
   User
-    .create({
-      firstName: body.firstName,
-      lastName: body.lastName,
-      email: body.email,
-      password: body.password
-    })
+    .create(req.body)
     .then(data => {
-      res.redirect('/homepage')
+      res.redirect('/')
     })
     .catch(err => {
+      res.send('masuk catch?')
       res.send(err)
     })
 })
@@ -46,15 +30,13 @@ router.post('/login', (req, res) => {
     })
     .then(name => {
       let isValid = compare(req.body.password, name.password);
-      // console.log(isValid)
       if (isValid) {
-        console.log(req.session)
         req.session.login = {
           id: name.id,
           email: name.email
         }
         // console.log(req.session)
-        res.redirect(`/homepage`)
+        res.redirect(`/`)
       } else {
         res.send('Username / Password is wrong')
       }
@@ -64,10 +46,10 @@ router.post('/login', (req, res) => {
     })
 })
 
-router.get('/logot', (req, res) => {
+router.get('/logout', (req, res) => {
   if (req.session.login) {
     req.session.destroy()
-    res.redirect('/homepage')
+    res.redirect('/')
   } else {
     res.redirect('/login')
   }
