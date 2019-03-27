@@ -1,6 +1,5 @@
 'use strict';
 const bcrypt = require('bcrypt')
-const sequelize = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     firstName: DataTypes.STRING,
@@ -31,15 +30,14 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING
   }, 
   {
-    timestamps : false ,
     hooks : {
-      afterValidate(User) {
+      afterValidate: function(User) {
         User.password = bcrypt.hashSync(User.password, bcrypt.genSaltSync(8))
       }
     }
-
   });
   User.associate = function(models) {
+    User.belongsToMany(models.Apartment, {through: models.Review})
     // associations can be defined here
   };
   return User;

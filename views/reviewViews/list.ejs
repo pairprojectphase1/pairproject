@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Document</title>
+</head>
+<body>
+
+  <% include ../partials/navbar %>
+  
+  Nama Apartment: <%= data.name %> <br>
+  Location: <%= data.location %> <br>
+  Phone: <%= data.phone %> <br>
+  Price: <%= data.price %> <br>
+
+  Review
+  <% if (!data.Users.length) { %>
+    <h3>NO REVIEW</h3>
+  <% } else { %>
+    <table rules="rows" cellpadding="10">
+      <tr>
+        <th>Reviewed By</th>
+        <th>Rating</th>
+        <th>Review</th>
+        <th>sentiment</th>
+      </tr>
+      <% data.Users.forEach(user=> { %> 
+        <tr>
+          <td><%= user.firstName + ' ' + user.lastName%></td>
+          <td><%= user.Review.rating %></td>
+          <td><%= user.Review.comment %></td>
+          <td>
+          <%= locals.analyzeIt(user.Review.comment) %>
+          </td>
+        </tr>
+     <% }) %>
+    </table>
+  <% } %>
+
+  <% if (sameLocation.length) { %>
+    <h2>Apartment dengan lokasi yang sama</h2>
+    <table rules="rows" cellpadding="10">
+      <tr>
+        <th>Nama</th>
+        <th>Location</th>
+        <th>Phone</th>
+        <th>Price</th>
+      </tr>
+      <% sameLocation.forEach(apt => { %>
+        <tr>
+          <td><a href="/review/<%=apt.id%>"><%= apt.name %></a></td>
+          <td><%= apt.location %></td>
+          <td><%= apt.phone %></td>
+          <td><%= apt.price %></td>
+        </tr>
+      <% }) %>
+    </table>
+  <% } else { %>
+    <h2>tidak ada apartment dengan lokasi yang sama</h2>
+ <%  } %>
+</body>
+</html>
