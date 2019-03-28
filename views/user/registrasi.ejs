@@ -4,19 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Sign In</title>
   <title>Document</title>
 </head>
 <body>
-  <form method="post">
-    First Name : <br>
-      <input type="text" name="firstName" required> <br><br>
-    Last Name : <br>
-      <input type="text" name="lastName" required><br><br>
-    Email : <br>
-      <input type="text" name="email" required><br><br>
-    Password : <br>
-      <input type="text" name="password" required><br><br>
-      <input type='submit' value='Register'>
+    <%include ../partials/navbar %>
+    <form method="POST">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputfirstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="First Name" name="firstName">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputlastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Last Name" name="lastName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail">Email</label>
+          <input type="text" class="form-control" id="email" placeholder="email@email.com" name="email">
+        </div>
+        <div class="form-group">
+          <label for="inputPassword">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="password" name="password">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </form>
+      <% include ../partials/footer %>
 </form>
 </body>
 </html>

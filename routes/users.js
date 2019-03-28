@@ -1,10 +1,17 @@
 const router = require('express').Router()
-const { User } = require('../models')
+const { User, Review , Apartment} = require('../models')
 const { compare } = require('../helpers/bcrypt')
+const analyze = require('../helpers/analyzeComment')
+
+router.use((req, res, next) => {
+  res.locals.analyzeIt = analyze
+  next()
+})
 
 router.get('/registrasi', (req, res) => {
   res.render('user/registrasi')
 })
+
 .post('/registrasi', (req, res) => {
   User
     .create(req.body)
@@ -12,7 +19,7 @@ router.get('/registrasi', (req, res) => {
       res.redirect('/')
     })
     .catch(err => {
-      res.send('masuk catch?')
+      // res.send('masuk catch?')
       res.send(err)
     })
 })
@@ -43,6 +50,52 @@ router.post('/login', (req, res) => {
     })
     .catch(err => {
       res.send(err.message)
+    })
+})
+
+router.get('/profile/:id', (req, res) => {
+  let Reviews = null
+  Review.findAll({
+    where : {
+      UserId : req.params.id
+    }    
+  })
+  .then(data => {
+    Reviews = data
+    return User.findByPk(req.params.id, {
+      include : {
+        model : Apartment
+      }
+    })
+  })
+  .then(profileData => {
+    // res.send(profileData)
+    res.render('user/profile', {data : profileData, Reviews})
+  })
+  .catch(err => {
+    res.send(err)
+  })
+})
+
+router.post('/profile/:id', (req, res) => {
+  let { body } = req
+  User
+    .update({
+      id: req.params.id,
+      firstName: body['firstName'],
+      lastName: body['lastName'],
+      email: body['email'],
+      password: body['password'],
+    }, {
+      where : {
+        id :req.params.id
+      }
+    })
+    .then(() => {
+      res.redirect('/')
+    })
+    .catch(err => {
+      res.send(err)
     })
 })
 

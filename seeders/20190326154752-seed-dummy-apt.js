@@ -15,7 +15,7 @@ module.exports = {
     return queryInterface.bulkInsert('Apartments', [{
         name: 'Taman Melati',
         location: 'Depok',
-        telp: '08090909',
+        phone: '08090909',
         price: 400000,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -23,14 +23,14 @@ module.exports = {
       {
         name: 'Margonda Residence',
         location: 'Depok',
-        telp: '01231909',
+        phone: '01231909',
         price: 300000,
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
         name: 'Gandaria Heights',
         location: 'Depok',
-        telp: '08123909',
+        phone: '08123909',
         price: 500000,
         createdAt: new Date(),
         updatedAt: new Date()
