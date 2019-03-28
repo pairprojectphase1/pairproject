@@ -8,12 +8,12 @@
   <title>Add Data</title>
 </head>
 
-<body>
+<body style="height : 100vh">
   <center>
     <h1>Add Data</h1>
     <a href="/">show all data</a><br>
 
-    <form method="POST">
+    <form class="p-5 border" method="POST">
       Name <br>
       <input type="text" name="name"> <br>
       Location <br>
@@ -25,6 +25,10 @@
       <input type="submit" value="Add">
     </form>
   </center>
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
 </body>
 
 </html>

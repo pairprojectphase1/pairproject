@@ -8,45 +8,34 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-  <!-- Font Awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.5/css/mdb.min.css" rel="stylesheet">
-
-<!-- JQuery -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.5/js/mdb.min.js"></script>
   <title>Apartment Reviews</title>
 </head>
 
-<body>
-  
+<body style="height: 100vh">
   <header>
-      <%include ./partials/navbar.ejs %>
-      <div class="p-3 mb-2 bg-primary text-white">
-          <div class="text-center">
-            <h1 class="display-4"> <i>Apartment Reviews</i> </h1>
-            <p class="lead">Dapatkan info Apartment Murah, Apartment harian, Apartment bebas, dan info Apartment lainnya</p>
-            <div class="d-flex w-100 justify-content-center">
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Kota" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-            </div>
-          </div>
-      
-        </div>
+    <%include ./partials/navbar.ejs %>
   </header>
 
-  
-   <% include ./partials/footer %>
+  <main role="main" class="h-100">
+    <div class="p-3 mb-2 bg-primary text-white">
+      <div class="text-center">
+        <h1 class="display-4"> <i>Apartment Reviews</i> </h1>
+        <p class="lead">Dapatkan info Apartment Murah, Apartment harian, Apartment bebas, dan info Apartment lainnya
+        </p>
+        <div class="d-flex w-100 justify-content-center">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Kota" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+  </main>
+
+
+  <footer class="footer">
+    <% include ./partials/footer %>
+  </footer>
+  </div>
 </body>
 
 </html>

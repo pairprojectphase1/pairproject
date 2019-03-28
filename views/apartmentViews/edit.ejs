@@ -5,26 +5,49 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Edit Data</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Apartment Data</title>
 </head>
 
-<body>
-  <center>
-    <h1>Edit Data</h1>
-    <a href="/">show all data</a><br>
+<body style="height :100vh">
+  <header>
+    <% include ../partials/navbar %>
+  </header>
 
-    <form method="POST">
-      Name <br>
-      <input type="text" value="<%= apartment.name  %>" name="name"> <br>
-      Location <br>
-      <input type="text" value="<%= apartment.location %>" name="location"> <br>
-      Phone <br>
-      <input type="text" value="<%= apartment.phone %>" name="phone"> <br>
-      Price <br>
-      <input type="text" value="<%= apartment.price %>" name="price"> <br>
-      <input type="submit" value="Edit ">
-    </form>
-  </center>
+  <main role="main" class="h-100">
+    <center>
+      <h1><i> Edit Data </i></h1>
+      <h5> <a href="/apartment">show all data</a><br> </h5>
+      <form method="POST" class="p-5 border">
+        <div class="form-col">
+          <div class="col-2">
+            Name
+            <input type="text" class="form-control" placeholder="Name" value="<%= apartment.name  %>" name="name">
+          </div>
+          <div class="col-2">
+            Location
+            <input type="text" class="form-control" placeholder="Location" value="<%= apartment.location %>"
+              name="location">
+          </div>
+          <div class="col-2">
+            Phone Number
+            <input type="text" class="form-control" placeholder="Phone" value="<%= apartment.phone %>" name="phone">
+          </div>
+          <div class="col-2">
+            Price
+            <input type="text" class="form-control" placeholder="Price" value="<%= apartment.price %>" name="price">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success">Edit</button>
+      </form>
+    </center>
+
+  </main>
+  
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
 </body>
 
 </html>

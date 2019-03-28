@@ -6,33 +6,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <title>Document</title>
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Apartment</title>
 </head>
 
-<body>
+<body style="height : 100vh">
+
+  <head>
     <% include ../partials/navbar %>
+  </head>
 
-  <form method="POST">
-    <table rules="rows" cellpadding="10">
-      <tr>
-        <th>Nama</th>
-        <th>Lokasi</th>
-        <th>No Telfon</th>
-        <th>Harga</th>
-        <th>Action</th>
-      </tr>
+  <div class="container h-100">
+    <div class="row h-75 d-flex justify-content-center align-items-center">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Location</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Price</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% apartments.forEach(apt => { %>
+          <tr>
+            <td><%= apt.name %></td>
+            <td><%= apt.location %></td>
+            <td><%= apt.phone %></td>
+            <td><%= apt.price %></td>
+            <td><a class="btn btn-primary" href="apartment/edit/<%= apt.id %>">Edit</a> <a class="btn btn-success"
+                href="review/<%= apt.id %>">Review</a></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </table>
 
-      <% apartments.forEach(apt => { %>
-        <tr>
-          <td><%= apt.name %></td>
-          <td><%= apt.location %></td>
-          <td><%= apt.phone %></td>
-          <td><%= apt.price %></td>
-          <td><a href="apartment/edit/<%= apt.id %>">Edit</a> <a href="review/<%= apt.id %>">Review</a></td>          
-        </tr>
-      <% }) %>
-    </table>
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
   </form>
 </body>
 

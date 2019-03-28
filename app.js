@@ -8,7 +8,7 @@ app.use('/', express.static('/'));
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use('/assets', express.static('public'))
 app.use('/', routes)
 
 app.listen(port, () => console.log('Connecting to port', port));
