@@ -108,4 +108,19 @@ router.get('/logout', (req, res) => {
   }
 })
 
+router.get('/search',(req, res) => {
+  if (typeof req.query.text !== 'undefined') {
+    search(req.query.text, function(data_items) {
+      console.log
+        res.send({
+            response : {
+                items : data_items
+            }
+        })
+    })
+} else {
+    res.send({error : '[100] Not search params text in query.'})
+}
+})
+
 module.exports = router
