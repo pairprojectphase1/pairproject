@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,22 +10,36 @@
   <title>Sign In</title>
 </head>
 
-<body>
+<body style="height: 100vh;" class="w-100">
+
+  <head>
     <%include ../partials/navbar %>
-    <form class="px-4 py-3" method="POST">
+  </head>
+  <div class="container h-100">
+    <div class="row h-50 d-flex justify-content-center align-items-center">
+      <form class="p-5 border" method="POST">
         <div class="form-group">
           <label for="exampleDropdownFormEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com" name="email">
+          <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com"
+            name="email">
         </div>
         <div class="form-group">
           <label for="exampleDropdownFormPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password" name="password">
+          <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password"
+            name="password">
         </div>
         <div class="form-group">
-          
+
         </div>
         <input type="submit" class="btn btn-primary" value="submit">
       </form>
+    </div>
+  </div>
+
+
+  <footer>
     <% include ../partials/footer %>
+  </footer>
 </body>
+
 </html>
