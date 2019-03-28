@@ -10,7 +10,19 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     hooks: {
       beforeCreate: function(instanceReview, options) {
+        // console.log(instanceReview)
         instanceReview.rating = rating(instanceReview.comment)
+        return sequelize.models.Review.findOne({
+          where: {
+            UserId: instanceReview.UserId,
+            ApartmentId: +instanceReview.ApartmentId
+          }
+        })
+        .then(found => {
+          if (found) {
+            throw new Error('You cant review on this apartment twice')
+          }
+        })
       }
     }
   });

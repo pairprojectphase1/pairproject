@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const { User, Review , Apartment} = require('../models')
 const { compare } = require('../helpers/bcrypt')
+const Verify = require('../middlewares/verify')
 
 router.get('/registrasi', (req, res) => {
   res.render('user/registrasi')
@@ -47,7 +48,7 @@ router.post('/login', (req, res) => {
     })
 })
 
-router.get('/profile/:id', (req, res) => {
+router.get('/profile/:id', Verify, (req, res) => {
   let Reviews = null
   Review.findAll({
     where : {
