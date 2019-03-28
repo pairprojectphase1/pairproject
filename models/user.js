@@ -30,7 +30,6 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING
   }, 
   {
-    timestamps : false,
     hooks : {
       afterValidate: function(User) {
         User.password = bcrypt.hashSync(User.password, bcrypt.genSaltSync(8))

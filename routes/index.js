@@ -4,6 +4,7 @@ const aptRoutes = require('./aptRoutes')
 const session = require('express-session')
 const reviewRoutes = require('./reviewRoutes')
 const userRoutes = require('./users')
+const analyze = require('../helpers/analyzeComment')
 
 routes.use(session({ secret: 'keyboard cat' }))
 
@@ -16,10 +17,14 @@ routes.use((req, res, next) => {
   next()
 })
 
+routes.use((req, res, next) => {
+  res.locals.analyzeIt = analyze
+  next()
+})
+
 routes.get('/', (req, res) => {
   res.render('homepage');
 })
-
 
 routes.use('/users', userRoutes)
 routes.use('/apartment', aptRoutes)
