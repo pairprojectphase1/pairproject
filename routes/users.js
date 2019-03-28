@@ -14,8 +14,7 @@ router.get('/registrasi', (req, res) => {
       res.redirect('/')
     })
     .catch(err => {
-      // res.send('masuk catch?')
-      res.send(err)
+      res.render('error', {err: err.message})
     })
 })
 
@@ -37,14 +36,13 @@ router.post('/login', (req, res) => {
           id: name.id,
           email: name.email
         }
-        // console.log(req.session)
         res.redirect(`/`)
       } else {
-        res.send('Username / Password is wrong')
+        res.render('error', {err: 'Username / Password is wrong'})
       }
     })
     .catch(err => {
-      res.send(err.message)
+      res.render('error', {err: err.message})
     })
 })
 
@@ -64,11 +62,10 @@ router.get('/profile/:id', Verify, (req, res) => {
     })
   })
   .then(profileData => {
-    // res.send(profileData)
     res.render('user/profile', {data : profileData, Reviews})
   })
   .catch(err => {
-    res.send(err)
+    res.render('error', {err: err.message})
   })
 })
 
@@ -90,7 +87,7 @@ router.post('/profile/:id', (req, res) => {
       res.redirect('/')
     })
     .catch(err => {
-      res.send(err)
+      res.render('error', {err: err.message})
     })
 })
 
@@ -103,19 +100,5 @@ router.get('/logout', (req, res) => {
   }
 })
 
-router.get('/search',(req, res) => {
-  if (typeof req.query.text !== 'undefined') {
-    search(req.query.text, function(data_items) {
-      console.log
-        res.send({
-            response : {
-                items : data_items
-            }
-        })
-    })
-} else {
-    res.send({error : '[100] Not search params text in query.'})
-}
-})
 
 module.exports = router

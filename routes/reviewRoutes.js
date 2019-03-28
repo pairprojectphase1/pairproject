@@ -32,7 +32,7 @@ routes.get('/:aptId', (req, res) => {
       })
     })
     .catch(err => {
-      res.send(err.message)
+      res.render('error', {err: err.message})
     })
 })
 .post('/:aptId', (req, res) => {
@@ -45,7 +45,7 @@ routes.get('/:aptId', (req, res) => {
     res.redirect(`/review/${req.params.aptId}`)
   })
   .catch(err => {
-    res.send(err.message)
+    res.render('error', {err: err.message})
   })
 })
 

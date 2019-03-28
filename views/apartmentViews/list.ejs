@@ -8,47 +8,70 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>Apartment</title>
+
+  <style>
+    h3 {
+      margin-top: 30px;
+      margin-bottom: 30px
+    }
+
+    .container {
+      margin-top: 30px
+    }
+  </style>
 </head>
 
-<body style="height : 100vh">
+<body>
 
   <head>
     <% include ../partials/navbar %>
   </head>
 
-  <div class="container h-100">
-    <div class="row h-75 d-flex justify-content-center align-items-center">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Location</th>
-            <th scope="col">Phone Number</th>
-            <th scope="col">Price</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% apartments.forEach(apt => { %>
-          <tr>
-            <td><%= apt.name %></td>
-            <td><%= apt.location %></td>
-            <td><%= apt.phone %></td>
-            <td><%= apt.price %></td>
-            <td><a class="btn btn-primary" href="apartment/edit/<%= apt.id %>">Edit</a> <a class="btn btn-success"
-                href="review/<%= apt.id %>">Review</a></td>
-          </tr>
-          <% }) %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  </table>
+  <% if (login) { %>
+  <% if (login.email == 'admin@admin.com') { %>
+  <center>
+    <h3><a href="/apartment/add">Add Apartment</a></h3>
+  </center>
+  <% } %>
+  <% } %>
 
-  <footer>
-    <% include ../partials/footer %>
-  </footer>
-  </form>
+  <div class="container">
+    <table class="table">
+      <thead class="thead-dark text-center">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Location</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Price</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <% apartments.forEach(apt => { %>
+        <tr>
+          <td><%= apt.name %></td>
+          <td><%= apt.location %></td>
+          <td><%= apt.phone %></td>
+          <td><%= apt.price %></td>
+          <td>
+            <div class="text-center">
+              <% if (login) { %>
+              <% if (login.email == 'admin@admin.com') { %>
+              <center>
+              <a class="btn btn-primary" href="apartment/edit/<%= apt.id %>">Edit</a>
+            </center>
+            <% } %>
+            <% } %>
+            <a class="btn btn-success" href="review/<%= apt.id %>">Review</a>
+            </div>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <% include ../partials/footer.ejs %>
 </body>
 
 </html>

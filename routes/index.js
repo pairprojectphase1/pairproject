@@ -5,6 +5,7 @@ const session = require('express-session')
 const reviewRoutes = require('./reviewRoutes')
 const userRoutes = require('./users')
 const analyze = require('../helpers/analyzeComment')
+const formatDate = require('../helpers/formatDate')
 
 routes.use(session({ secret: 'keyboard cat' }))
 
@@ -19,6 +20,7 @@ routes.use((req, res, next) => {
 
 routes.use((req, res, next) => {
   res.locals.analyzeIt = analyze
+  res.locals.getDate = formatDate
   next()
 })
 
@@ -31,7 +33,7 @@ routes.use('/apartment', aptRoutes)
 routes.use('/review', reviewRoutes)
 
 routes.get('*', (req, res) => {
-  res.send('Halaman tidak ditemukan')
+  res.render('error', {err: null})
 })
 
 module.exports = routes;

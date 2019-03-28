@@ -1,1 +1,0 @@
-console.log('/public/uploads/myImage-1553775680043.jpg'.slice(7))
