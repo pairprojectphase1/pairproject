@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Apartment Details</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    #infoapartment {
+      margin: 0 auto;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    table {
+      border-collapse: collapse;
+      table-layout: fixed;
+      width: 310px;
+    }
+
+    table td {
+      border: solid 1px #fab;
+      width: 100px;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=1723693227866530&autoLogAppEvents=1">
+  </script>
+
+  <div class="navibar">
+    <% include ../partials/navbar %>
+  </div>
+
+  <div class="card" style="width:500px;height:500px;" id="infoapartment">
+    <div class="view overlay">
+      <img class="card-img-top" src="<%= data.images %>" alt="Card image cap">
+      <a href="#!">
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+
+    <div class="card-body">
+      <h4 class="card-title"><%= data.name %></h4>
+      <p class="card-text">
+        Location: <%= data.location %> <br>
+        Phone: <%= data.phone %> <br>
+        Price: <%= data.price %> </p>
+
+      <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"
+        data-size="large"><a target="_blank"
+          href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+          class="fb-xfbml-parse-ignore">Share</a></div>
+
+      <% if (login) { %>
+      <form action="/review/<%= data.id %>" method="POST">
+        <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Write to us</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body mx-3">
+                <div class="md-form">
+                  <i class="fas fa-pencil prefix grey-text"></i>
+                  <textarea type="text" id="form8" class="md-textarea form-control" rows="4" name="comment"></textarea>
+                  <label data-error="wrong" data-success="right" for="form8">Your message</label>
+                </div>
+              </div>
+              <div class="modal-footer d-flex justify-content-center">
+                <button type="submit" class="btn btn-unique">Send <i class="fas fa-paper-plane-o ml-1"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalContactForm">Give
+            Review</a>
+        </div>
+      </form>
+      <% } %>
+    </div>
+  </div>
+  <hr>
+  <div>
+    <% if (!data.Users.length) { %>
+    <h3 class="text-center">NO REVIEW</h3>
+    <% } else { %>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Reviewed By</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Review</th>
+          <th scope="col">sentiment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.Users.forEach(user=> { %>
+        <tr>
+          <td><%= user.firstName + ' ' + user.lastName%></td>
+          <td><%= user.Review.rating %></td>
+          <td><%= user.Review.comment %></td>
+          <td><%= locals.analyzeIt(user.Review.comment) %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <% } %>
+  </div>
+  <hr>
+
+  <div class="container">
+    <% if (sameLocation.length) { %>
+    <h2>Apartment dengan lokasi yang sama</h2>
+    <div class="row">
+      <% sameLocation.forEach(apt => { %>
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem">
+          <img class="card-img-top" src="<%= apt.images %>" alt="Card image">
+          <div class="card-body">
+            <h4><%= apt.name %></h4>
+            <p class="card-text">
+              Location: <%= apt.location %> <br>
+              Phone: <%= apt.phone %> <br>
+              Price: <%= apt.price %> </p>
+            <a href="/review/<%=apt.id%>" class="btn btn-primary">See Profile</a>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <% } else { %>
+  <h2>tidak ada apartment dengan lokasi yang sama</h2>
+  <% } %>
+
+  <% include ../partials/mdb-js.ejs %>
+</body>
+
+</html>

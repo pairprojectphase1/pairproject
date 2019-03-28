@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Apartment Data</title>
+</head>
+
+<body style="height :100vh">
+  <header>
+    <% include ../partials/navbar %>
+  </header>
+  <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+
+  <main role="main" class="h-100">
+    <center>
+      <h1><i> Edit Data </i></h1>
+      <h5> <a href="/apartment">show all data</a><br> </h5>
+      <form method="POST" class="p-5 border">
+        <div class="form-col">
+          <div class="col-2">
+            Name
+            <input type="text" class="form-control" placeholder="Name" value="<%= apartment.name  %>" name="name">
+          </div>
+          <div class="col-2">
+            Location
+            <input type="text" class="form-control" placeholder="Location" value="<%= apartment.location %>"
+              name="location">
+          </div>
+          <div class="col-2">
+            Phone Number
+            <input type="text" class="form-control" placeholder="Phone" value="<%= apartment.phone %>" name="phone">
+          </div>
+          <div class="col-2">
+            Price
+            <input type="text" class="form-control" placeholder="Price" value="<%= apartment.price %>" name="price">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success">Edit</button>
+      </form>
+    </center>
+
+  </main>
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+  <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=1723693227866530&autoLogAppEvents=1"></script>
+</body>
+
+</html>
