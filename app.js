@@ -3,7 +3,6 @@ const app = express();
 const bodyParser = require('body-parser')
 const port = 4000;
 const routes = require('./routes')
-const search = require('./function/search');
 
 // app.use('/public', express.static(process.cwd() + '/public'));
 app.use(express.static('./public'))
