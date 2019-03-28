@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/pairprojectphase1/pairproject#readme",
   "dependencies": {
+    "@google-cloud/translate": "^2.1.4",
     "bcrypt": "^3.0.5",
     "ejs": "^2.6.1",
     "express": "^4.16.4",

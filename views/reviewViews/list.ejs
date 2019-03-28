@@ -1,66 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>Document</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.5/css/mdb.min.css" rel="stylesheet">
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+  </script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.5/js/mdb.min.js"></script>
+  <style>
+    #infoapartment {
+      margin: 0 auto;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    table {
+      border-collapse: collapse;
+      table-layout: fixed;
+      width: 310px;
+    }
+
+    table td {
+      border: solid 1px #fab;
+      width: 100px;
+      word-wrap: break-word;
+    }
+  </style>
 </head>
+
 <body>
+  <div class="navibar">
+    <% include ../partials/navbar %>
+  </div>
 
-  <% include ../partials/navbar %>
-  
-  Nama Apartment: <%= data.name %> <br>
-  Location: <%= data.location %> <br>
-  Phone: <%= data.phone %> <br>
-  Price: <%= data.price %> <br>
+  <div class="card" style="width:500px;height:500px;" id="infoapartment">
+    <div class="view overlay">
+      <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
+        alt="Card image cap">
+      <a href="#!">
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
 
-  Review
-  <% if (!data.Users.length) { %>
+    <div class="card-body">
+      <h4 class="card-title"><%= data.name %></h4>
+      <p class="card-text">
+        Location: <%= data.location %> <br>
+        Phone: <%= data.phone %> <br>
+        Price: <%= data.price %> </p>
+
+      <% if (login) { %>
+      <form action="/review/<%= data.id %>" method="POST">
+        <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Write to us</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body mx-3">
+                <div class="md-form">
+                  <i class="fas fa-pencil prefix grey-text"></i>
+                  <textarea type="text" id="form8" class="md-textarea form-control" rows="4" name="comment"></textarea>
+                  <label data-error="wrong" data-success="right" for="form8">Your message</label>
+                </div>
+              </div>
+              <div class="modal-footer d-flex justify-content-center">
+                <button type="submit" class="btn btn-unique">Send <i class="fas fa-paper-plane-o ml-1"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalContactForm">Give
+            Review</a>
+        </div>
+      </form>
+      <% } %>
+    </div>
+  </div>
+
+  <div>
+    <% if (!data.Users.length) { %>
     <h3>NO REVIEW</h3>
-  <% } else { %>
-    <table rules="rows" cellpadding="10">
-      <tr>
-        <th>Reviewed By</th>
-        <th>Rating</th>
-        <th>Review</th>
-        <th>sentiment</th>
-      </tr>
-      <% data.Users.forEach(user=> { %> 
+    <% } else { %>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Reviewed By</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Review</th>
+          <th scope="col">sentiment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.Users.forEach(user=> { %>
         <tr>
           <td><%= user.firstName + ' ' + user.lastName%></td>
           <td><%= user.Review.rating %></td>
           <td><%= user.Review.comment %></td>
-          <td>
-          <%= locals.analyzeIt(user.Review.comment) %>
-          </td>
+          <td><%= locals.analyzeIt(user.Review.comment) %></td>
         </tr>
-     <% }) %>
+        <% }) %>
+      </tbody>
     </table>
-  <% } %>
+    <% } %>
+  </div>
 
-  <% if (sameLocation.length) { %>
+
+  <div class="container">
+  <% if (sameLocation.length) { %> 
     <h2>Apartment dengan lokasi yang sama</h2>
-    <table rules="rows" cellpadding="10">
-      <tr>
-        <th>Nama</th>
-        <th>Location</th>
-        <th>Phone</th>
-        <th>Price</th>
-      </tr>
-      <% sameLocation.forEach(apt => { %>
-        <tr>
-          <td><a href="/review/<%=apt.id%>"><%= apt.name %></a></td>
-          <td><%= apt.location %></td>
-          <td><%= apt.phone %></td>
-          <td><%= apt.price %></td>
-        </tr>
-      <% }) %>
-    </table>
+    <% sameLocation.forEach(apt => { %>
+        <div class="card" style="width:400px">
+          <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%">
+          <div class="card-body">
+            <h4><%= apt.name %></h4>
+            <p class="card-text">
+                Location: <%= apt.location %> <br>
+                Phone: <%= apt.phone %> <br>
+                Price: <%= apt.price %> </p>
+            <a href="/review/<%=apt.id%>" class="btn btn-primary">See Profile</a>
+          </div>
+        </div>
+      </div>
+    <% }) %>
   <% } else { %>
     <h2>tidak ada apartment dengan lokasi yang sama</h2>
- <%  } %>
+  <% } %>
 </body>
+
 </html>

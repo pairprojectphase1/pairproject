@@ -25,4 +25,8 @@ routes.use('/users', userRoutes)
 routes.use('/apartment', aptRoutes)
 routes.use('/review', reviewRoutes)
 
+routes.get('*', (req, res) => {
+  res.send('Halaman tidak ditemukan')
+})
+
 module.exports = routes;
