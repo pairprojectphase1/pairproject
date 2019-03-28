@@ -48,7 +48,7 @@ routes.get('/', (req, res) => {
       })
     })
     .catch(err => {
-      res.send(err.message)
+      res.render('error', {err: err.message})
     })
 })
 
@@ -64,7 +64,7 @@ routes.get('/add', (req, res) => {
         res.redirect('/apartment')
       })
       .catch(err => {
-        res.send(err.message)
+        res.render('error', {err: err.message})
       })
   })
 
@@ -76,7 +76,7 @@ routes.get('/edit/:id', (req, res) => {
         })
       })
       .catch(err => {
-        res.send(err.message)
+        res.render('error', {err: err.message})
       })
   })
   .post('/edit/:id', (req, res) => {
@@ -89,7 +89,7 @@ routes.get('/edit/:id', (req, res) => {
         res.redirect('/apartment')
       })
       .catch(err => {
-        res.send(err.message)
+        res.render('error', {err: err.message})
       })
   })
 
@@ -101,7 +101,7 @@ routes.get('/search', (req, res) => {
     })
     .then(apartments => {
       if (!apartments.length) {
-        res.send(`There is no apartments in ${req.query.location}`)
+        res.render('error', {err: `There is no apartments in ${req.query.location}`})
       } else {
         res.render('apartmentViews/list', {
           apartments
@@ -109,22 +109,8 @@ routes.get('/search', (req, res) => {
       }
     })
     .catch(err => {
-      res.send(err)
+      res.render('error', {err: err.message})
     })
 })
-
-// routes.get('/delete/:id', (req, res) => {
-//   Apartment.destroy({
-//       where: {
-//         id: +req.params.id
-//       }
-//     })
-//     .then(() => {
-//       res.redirect('/Apartments')
-//     })
-//     .catch(err => {
-//       res.send(err.message)
-//     })
-// })
 
 module.exports = routes;

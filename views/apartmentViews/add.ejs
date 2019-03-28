@@ -7,24 +7,42 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Add Data</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body style="height : 100vh">
-  <center>
-    <h1>Add Data</h1>
-    <a href="/">show all data</a><br>
 
-    <form class="p-5 border" method="POST">
-      <form action="/apartment/add" method="POST" enctype="multipart/form-data">
-        Name <br>
-        <input type="text" name="name"> <br>
-        Location <br>
-        <input type="text" name="location"> <br>
-        Phone <br>
-        <input type="text" name="phone"> <br>
-        Price <br>
-        <input type="number" name="price"> <br>
+  <head>
+    <%include ../partials/navbar %>
+  </head>
+  <div class="container h-100">
+    <div class="row h-50 d-flex justify-content-center align-items-center">
+      <form class="p-5 border" ction="/apartment/add" method="POST" enctype="multipart/form-data">
+        <center>
+          <h1>Add Data</h1>
+          <a href="/">show all data</a><br>
+        </center>
+        <div class="form-group">
+          <label for="exampleDropdownFormEmail1">Name</label>
+          <input type="text" class="form-control" id="exampleDropdownFormEmail1" placeholder="Name" name="name">
+        </div>
+        <div class="form-group">
+          <label for="exampleDropdownFormPassword1">Location</label>
+          <input type="text" class="form-control" id="exampleDropdownFormPassword1" placeholder="Location"
+            name="location">
+        </div>
+        <div class="form-group">
+          <label for="exampleDropdownFormEmail1">Phone</label>
+          <input type="text" class="form-control" id="exampleDropdownFormEmail1" placeholder="Phone" name="phone">
+        </div>
+        <div class="form-group">
+          <label for="exampleDropdownFormPassword1">Price</label>
+          <input type="text" class="form-control" id="exampleDropdownFormPassword1" placeholder="Price" name="price">
+        </div>
+        <div class="form-group">
 
+        </div>
         <div class="container">
           <h1>File Upload</h1>
           <%= typeof msg != 'undefined' ? msg : '' %>
@@ -37,14 +55,14 @@
               <input class="file-path validate" type="text">
             </div>
           </div>
-          <button type="submit" class="btn">Add Data</button>
+          <input type="submit" class="btn btn-primary" value="Add Data">
         </div>
       </form>
-  </center>
+    </div>
+  </div>
 
-  <footer>
-    <% include ../partials/footer %>
-  </footer>
+  <% include ../partials/footer %>
+
   <script src="http://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

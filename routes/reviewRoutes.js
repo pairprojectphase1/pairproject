@@ -26,14 +26,13 @@ routes.get('/:aptId', (req, res) => {
       })
     })
     .then(sameLocation => {
-      // res.send(apartmentData)
       res.render('reviewViews/list', {
         data: apartmentData,
         sameLocation,
       })
     })
     .catch(err => {
-      res.send(err.message)
+      res.render('error', {err: err.message})
     })
 })
 .post('/:aptId', (req, res) => {
@@ -44,6 +43,9 @@ routes.get('/:aptId', (req, res) => {
   })
   .then(() => {
     res.redirect(`/review/${req.params.aptId}`)
+  })
+  .catch(err => {
+    res.render('error', {err: err.message})
   })
 })
 

@@ -1,0 +1,114 @@
+'use strict';
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    /*
+      Add altering commands here.
+      Return a promise to correctly handle asynchronicity.
+
+      Example:
+      */
+    return queryInterface.bulkInsert('Apartments', [
+      {
+        name: "Casa Grande Apartment",
+        location: "Jakarta",
+        phone: "(785) 7421165",
+        price: 11250000,
+        images: "/uploads/casa-grande.jpg",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: "Capitol Suites Apartment",
+        location: "Jakarta",
+        phone: "(336) 6996439",
+        price: 10000000,
+        images: "/uploads/capitol-suites",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: "Bassura City Apartment",
+        location: "Bekasi",
+        phone: "(272) 1546075",
+        price: 1750000,
+        images: "/uploads/bassura-city.jpg",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: "Grand Kartini Apartment",
+        location: "Jakarta",
+        phone: "(662) 1096754",
+        price: 8000000,
+        images: "/uploads/grand-kartini.jpg",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: "Kemang Village Apartment",
+        location: "Depok",
+        phone: "(551) 4558917",
+        price: 8000000,
+        images: "/uploads/kemang-village.jpg",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: "Menteng Square Apartment",
+        location: "Tangerang",
+        phone: "(989) 8870654",
+        price: 2850000,
+        images: "/uploads/menteng-square.jpg",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: "Royal Mediterania Apartment",
+        location: "Bakasi",
+        phone: "(566) 4180787",
+        price: 4170000,
+        images: "/uploads/royal-mediterania.jpg",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: "Springhill Terrace",
+        location: "Depok",
+        phone: "(590) 2569250",
+        price: 1840000,
+        images: "/uploads/springhill-terrace.jpg",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: "Thamrin Residence Apartment",
+        location: "Jakarta",
+        phone: "(246) 3612699",
+        price: 4170000,
+        images: "/uploads/thamrin-residence.jpg",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: "The Boulevard Apartment",
+        location: "Tangerang",
+        phone: "(207) 8204863",
+        price: 7500000,
+        images: "/uploads/the-boulevard.jpg",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ], {});
+  },
+
+  down: (queryInterface, Sequelize) => {
+    /*
+      Add reverting commands here.
+      Return a promise to correctly handle asynchronicity.
+
+      Example:
+      */
+     return queryInterface.bulkDelete('Apartments', null, {});
+  }
+};
