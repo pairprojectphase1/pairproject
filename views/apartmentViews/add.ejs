@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Add Data</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 
 <body>
@@ -13,7 +14,7 @@
     <h1>Add Data</h1>
     <a href="/">show all data</a><br>
 
-    <form method="POST">
+    <form action="/apartment/add" method="POST" enctype="multipart/form-data">
       Name <br>
       <input type="text" name="name"> <br>
       Location <br>
@@ -21,10 +22,28 @@
       Phone <br>
       <input type="text" name="phone"> <br>
       Price <br>
-      <input type="text" name="price"> <br>
-      <input type="submit" value="Add">
+      <input type="number" name="price"> <br>
+
+      <div class="container">
+        <h1>File Upload</h1>
+        <%= typeof msg != 'undefined' ? msg : '' %>
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>File</span>
+            <input name="myImage" type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+        <button type="submit" class="btn">Add Data</button>
+      </div>
     </form>
   </center>
+
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 
 </html>

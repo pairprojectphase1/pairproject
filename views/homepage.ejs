@@ -35,8 +35,8 @@
             <h1 class="display-4"> <i>Apartment Reviews</i> </h1>
             <p class="lead">Dapatkan info Apartment Murah, Apartment harian, Apartment bebas, dan info Apartment lainnya</p>
             <div class="d-flex w-100 justify-content-center">
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Kota" aria-label="Search">
+              <form class="form-inline my-2 my-lg-0" action="/apartment/search" method="GET">
+                <input class="form-control mr-sm-2" type="search" placeholder="Kota" aria-label="Search" name="location">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
             </div>
