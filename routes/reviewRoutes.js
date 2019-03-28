@@ -1,17 +1,11 @@
 const routes = require('express').Router();
 const {Op} = require('sequelize')
-const analyze = require('../helpers/analyzeComment')
 
 const {
   Review,
   Apartment,
   User
 } = require('../models')
-
-routes.use((req, res, next) => {
-  res.locals.analyzeIt = analyze
-  next()
-})
 
 routes.get('/:aptId', (req, res) => {
   let apartmentData = null
@@ -32,6 +26,7 @@ routes.get('/:aptId', (req, res) => {
       })
     })
     .then(sameLocation => {
+      // res.send(apartmentData)
       res.render('reviewViews/list', {
         data: apartmentData,
         sameLocation,

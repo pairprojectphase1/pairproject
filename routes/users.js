@@ -1,12 +1,6 @@
 const router = require('express').Router()
 const { User, Review , Apartment} = require('../models')
 const { compare } = require('../helpers/bcrypt')
-const analyze = require('../helpers/analyzeComment')
-
-router.use((req, res, next) => {
-  res.locals.analyzeIt = analyze
-  next()
-})
 
 router.get('/registrasi', (req, res) => {
   res.render('user/registrasi')
