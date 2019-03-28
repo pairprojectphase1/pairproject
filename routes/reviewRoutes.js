@@ -13,7 +13,6 @@ routes.use((req, res, next) => {
   next()
 })
 
-
 routes.get('/:aptId', (req, res) => {
   let apartmentData = null
   Apartment.findByPk(req.params.aptId, {
@@ -33,7 +32,6 @@ routes.get('/:aptId', (req, res) => {
       })
     })
     .then(sameLocation => {
-      // res.send(sameLocation)
       res.render('reviewViews/list', {
         data: apartmentData,
         sameLocation,
@@ -42,6 +40,16 @@ routes.get('/:aptId', (req, res) => {
     .catch(err => {
       res.send(err.message)
     })
+})
+.post('/:aptId', (req, res) => {
+  Review.create({
+    UserId: req.session.login.id,
+    ApartmentId: req.params.aptId,
+    comment: req.body.comment
+  })
+  .then(() => {
+    res.redirect(`/review/${req.params.aptId}`)
+  })
 })
 
 module.exports = routes
